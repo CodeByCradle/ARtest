@@ -6,15 +6,18 @@
     <script src="https://cdn.jsdelivr.net/npm/mind-ar@1.2.5/dist/mindar-image-aframe.prod.js"></script>
   </head>
   <body>
-    <a-scene mindar="imageTargetSrc:  https://CodeByCradle.github.io/ARtest/targets.mind;" color-space="sRGB" renderer="colorManagement: true, physicallyCorrectLights" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
+    <a-scene mindar-image="imageTargetSrc: https://CodeByCradle.github.io/ARtest/targets.mind;" color-space="sRGB" renderer="colorManagement: true, physicallyCorrectLights" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
       <a-assets>
-        <a-asset-item id="champagne-glass" src="https://CodeByCradle.github.io/ARtest/champagne_glass.glb"></a-asset-item>
+	<img id="mycard" src="https://CodeByCradle.github.io/ARtest/CodeByCradle.png" />
+	<a-asset-item id="champagne-glass" src="https://CodeByCradle.github.io/ARtest/champagne_glass.glb"></a-asset-item>
       </a-assets>
-  
-      <a-camera position="0 0 0" look-controls></a-camera>
-  
+
+      <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
+
       <a-entity mindar-image-target="targetIndex: 0">
-        <a-gltf-model src="#champagne-glass" animation="property: position; to: 0 0.1 0.1; dur: 1000; easing: easeInOutQuad; loop: true; dir: alternate"></a-gltf-model>
+        <!-- <a-plane src="#mycard" position="0 0 0" height="0.552" width="1" rotation="0 0 0"></a-plane> -->
+        <a-gltf-model src="#champagne-glass" scale="0.5 0.5 0.5" position="0 0 0" animation="property: position; to: 0 0.1 0.1; dur: 1000; easing: easeInOutQuad; loop: true; dir: alternate"
+        >
       </a-entity>
     </a-scene>
   </body>
