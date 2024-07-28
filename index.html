@@ -1,84 +1,25 @@
-<!DOCTYPE html>
 <html>
-<head>
+  <head>
     <title>CHEERS IN AR</title>
-    <!-- <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/gh/AR-js-org/AR.js@3.3.2/aframe/build/aframe-ar-nft.min.js"></script> -->
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mind-ar@1.2.5/dist/mindar-image-aframe.prod.js"></script>
+  </head>
+  <body>
+    <a-scene mindar-image="imageTargetSrc: https://CodeByCradle.github.io/ARtest/targets.mind;" color-space="sRGB" renderer="colorManagement: true, physicallyCorrectLights" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
+      <a-assets>
+	<img id="card" src="https://CodeByCradle.github.io/ARtest/CodeByCradle.png" />
+	<a-asset-item id="avatarModel" src="https://CodeByCradle.github.io/ARtest/champagne_glass.glb"></a-asset-item>
+      </a-assets>
 
-    <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar-nft.js"></script>
-    <script src="https://raw.githack.com/AR-js-org/AR.js/master/three.js/build/ar-nft.js"></script>
-    <style>
-        .arjs-loader {
-          height: 100%;
-          width: 100%;
-          position: absolute;
-          top: 0;
-          left: 0;
-          background-color: rgba(0, 0, 0, 0.8);
-          z-index: 9999;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-        }
-      
-        .arjs-loader div {
-          text-align: center;
-          font-size: 1.25em;
-          color: white;
-        }
-      </style>
-      
-</head>
-<body style="margin: 0px; overflow: hidden;">
-    <!-- minimal loader shown until image descriptors are loaded -->
-    <div class="arjs-loader">
-        <div>Loading, please wait...</div>
-    </div>
-    <a-scene
-        vr-mode-ui="enabled: false;"
-        renderer="logarithmicDepthBuffer: true;"
-        embedded
-        arjs="trackingMethod: best; sourceType: webcam; debugUIEnabled: false;"
-    >
-        <a-marker
-            type="pattern"
-            url="https://CodeByCradle.github.io/ARtest/pattern-champagne.patt"
+      <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
+
+      <a-entity mindar-image-target="targetIndex: 0">
+        <a-plane src="#card" position="0 0 0" height="0.552" width="1" rotation="0 0 0"></a-plane>
+        <a-gltf-model rotation="0 0 0 " position="0 0 0.1" scale="0.005 0.005 0.005" src="#avatarModel"
+          animation="property: position; to: 0 0.1 0.1; dur: 1000; easing: easeInOutQuad; loop: true; dir: alternate"
         >
-            <a-entity
-                gltf-model="https://CodeByCradle.github.io/ARtest/champagne_glass.glb"
-                scale="0.5 0.5 0.5"
-                position="0 0 0"
-            >
-            </a-entity>
-        </a-marker>
-        <a-entity camera></a-entity>
+      </a-entity>
     </a-scene>
-    <script>
-        // Log any errors to the console
-        window.onerror = function(message, source, lineno, colno, error) {
-            console.error("Error: " + message + " at " + source + ":" + lineno + ":" + colno);
-        };
-
-        // Ensure A-Frame and AR.js are loaded correctly
-        AFRAME.registerComponent('log', {
-            init: function () {
-                console.log('A-Frame and AR.js initialized.');
-            }
-        });
-
-        // Log marker detection
-        AFRAME.registerComponent('markerhandler', {
-            init: function () {
-                this.el.addEventListener('markerFound', function () {
-                    console.log('Marker found');
-                });
-                this.el.addEventListener('markerLost', function () {
-                    console.log('Marker lost');
-                });
-            }
-        });
-    </script>
-</body>
+  </body>
 </html>
-
-
